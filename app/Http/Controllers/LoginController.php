@@ -4,10 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
+/**
+ * Class LoginController
+ * @package App\Http\Controllers
+ */
 class LoginController extends Controller
 {
+    /**
+     * Process a login HTTP POST
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function postLogin(Request $request)
     {
         //TODO
@@ -24,11 +33,23 @@ class LoginController extends Controller
         }
     }
 
+    /**
+     * Get Login
+     *
+     * @return \Illuminate\View\View
+     */
     public function getLogin()
     {
         return view('login');
     }
 
+    /**
+     * Login
+     *
+     * @param $email
+     * @param $password
+     * @return bool
+     */
     private function login($email, $password){
         //TODO: Mirar bé la base de dades
         return true;
