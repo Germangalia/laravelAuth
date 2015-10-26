@@ -36,7 +36,9 @@
     </style>
 </head>
 <body>
-<form>
+<h1>Login</h1>
+<form method="post" action="auth.postLogin">
+    <input type="hidden" value="{{ csrf_token() }}" name="_token">
     <div class="container">
         <div class="form-group">
             <label for="email">Email address:</label>
