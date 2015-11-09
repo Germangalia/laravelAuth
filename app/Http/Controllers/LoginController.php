@@ -26,10 +26,10 @@ class LoginController extends Controller
 
         if ($this->login($request->email, $request->password)){
             //REDIRECT TO HOME
-            return redirect()->route('home');
+            return redirect()->route('auth.home');
         }else{
             //REDIRECT BACK
-            return redirect()->route('login');
+            return redirect()->route('auth.login');
         }
     }
 
@@ -52,6 +52,15 @@ class LoginController extends Controller
      */
     private function login($email, $password){
         //TODO: Mirar bé la base de dades
-        return true;
+
+        //$user = User::findOrFail(id);
+        //$user = User::all();
+        $user = User::where('email', $email)->first();
+        if($user->password == bcrypt($password)) {
+            return true;
+        }else {
+            return false;
+        }
     }
+
 }
