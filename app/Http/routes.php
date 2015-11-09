@@ -46,7 +46,17 @@ Route::get('/resource', function () {
     if($authenticated){
         return view('resource');
     } else {
-        return view('login');
+        return view(route('auth.login'));
     }
 
+});
+
+Route::get('forceLogout',
+    ['as' => 'sesion.flush',
+    function() {
+    Session::flush();
+}]);
+
+Route::get('/register', function() {
+    echo 'Aquesta és la pàgina de registre';
 });

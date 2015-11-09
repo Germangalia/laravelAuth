@@ -48,13 +48,17 @@
         <div class="form-group">
             <label for="password">Password:</label>
             <input type="password" class="form-control" id="email" mame="password">
+            <input type="checkbox" class="form-control" id="remember" mame="remember">
 
         </div>
         <button type="submit" class="btn btn-default">login</button>
         <button type="reset" class="btn btn-default">reset</button>
 
     </div>
+    No ets usuari encara?
+        <a id="register" href="{{route('auth.register')}}">Register</a>
     </div>
 </form>
+
 </body>
 </html>
