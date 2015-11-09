@@ -11,6 +11,9 @@
 |
 */
 
+Route::get('/patata', 'PatataController@getPatata');
+
+
 Route::get('/', function () {
     return view('welcome');
 });
