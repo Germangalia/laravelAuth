@@ -19,7 +19,7 @@ class ExampleTest extends TestCase
 
     public function testLoginPage()
     {
-        $this->visit('/login')
+        $this->visit(route('auth.login'))
             ->see('Login');
     }
 }
