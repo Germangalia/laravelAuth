@@ -26,9 +26,9 @@ class RegisterController extends Controller
 
         $user = new User();
 
-        $user->name = Input::get('name');
-        $user->password = bcrypt(Input::get('password'));
-        $user->email = Input::get('email');
+        $user->name = $request->get('name');
+        $user->password = bcrypt($request->get('password'));
+        $user->email = $request->get('email');
 
         $user->save();
 
