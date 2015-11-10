@@ -14,9 +14,15 @@ class RegisterController extends Controller
         return view('register');
     }
 
-    public function postRegister() {
+    public function postRegister(Request $request) {
 
         //dd(Input::all());
+
+        $this->validate($request, [
+            'name' => 'required|max:100',
+            'email' => 'required|email|unique',
+            'password' => 'required',
+        ])
 
         $user = new User();
 
@@ -27,5 +33,6 @@ class RegisterController extends Controller
         $user->save();
 
         //User::create(Input::all());
+        //User::create(request->all());
     }
 }
