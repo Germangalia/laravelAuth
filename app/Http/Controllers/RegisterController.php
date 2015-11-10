@@ -21,9 +21,11 @@ class RegisterController extends Controller
         $user = new User();
 
         $user->name = Input::get('name');
-        $user->password = Input::get('password');
+        $user->password = bcrypt(Input::get('password'));
         $user->email = Input::get('email');
 
         $user->save();
+
+        //User::create(Input::all());
     }
 }
