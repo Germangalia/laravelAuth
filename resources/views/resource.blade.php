@@ -5,8 +5,6 @@
     <title></title>
 </head>
 <body>
-
-RESOURCE
-
+ RESOURCE
 </body>
 </html>

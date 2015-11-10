@@ -14,15 +14,25 @@ class ExampleTest extends TestCase
     public function testBasicExample()
     {
         $this->visit('/')
-             ->see('Laravel 5');
+             ->see('Hello');
     }
 
+    /**
+     * Check login page
+     *
+     * @return void
+     */
     public function testLoginPage()
     {
         $this->visit(route('auth.login'))
-            ->see('Login');
+             ->see('LOGIN');
     }
 
+    /**
+     * Check that a user without access go to login page
+     *
+     * @return void
+     */
     public function testUserWithoutAccessToResource()
     {
         $this->unlogged();
@@ -30,44 +40,59 @@ class ExampleTest extends TestCase
             ->seePageIs(route('auth.login'))
             ->see('Login')
             ->dontSee('Logout');
+             //->seePageIs('/login');
     }
 
+    /**
+     * Check that a user with access go to resource
+     *
+     * @return void
+     */
     public function testUserWithAccessToResource()
     {
         $this->logged();
         $this->visit('/resource')
-        ->seePageIs('/resource');
+             ->seePageIs('/resource');
     }
 
-    public function unlogged(){
-        Session::set('authenticated', false);
+    private function logged()
+    {
+        Session::set('authenticated',true);
     }
 
-    public function logged() {
-        Session::set('authenticated', true);
+    private function unlogged()
+    {
+        Session::set('authenticated',false);
     }
 
-    public function testLoginPageHaveRegisterLinkAndWorksOk() {
+    /**
+     * bla bla bla
+     *
+     * @return void
+     */
+    public function testLoginPageHaveRegisterLinkAndWorksOk()
+    {
         $this->visit('/login')
             ->click('register')
             ->seePageIs('/register');
     }
 
     public function testPostLoginOk(){
-        $this->vist('/login')
-            ->type('germangalia@iesebre.com','email')
-            ->type('1234','password')
+        $this->visit('/login')
+            ->type('pepitapalotes@gmail.com', 'email')
+            ->type('123456', 'password')
             ->check('remember')
             ->press('login')
             ->seePageIs('/home');
     }
 
     public function testPostLoginNotOk(){
-        $this->vist('/login')
-            ->type('germangalia@iesebre.com','email')
-            ->type('1234','password')
+        $this->visit('/login')
+            ->type('sergiturbadenas@gmail.com', 'email')
+            ->type('123456', 'password')
             ->check('remember')
             ->press('login')
             ->seePageIs('/login');
     }
+
 }
