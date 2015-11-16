@@ -20,9 +20,9 @@ class RegisterController extends Controller
 
         $this->validate($request, [
             'name' => 'required|max:100',
-            'email' => 'required|email|unique',
-            'password' => 'required',
-        ])
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|confirmed'
+        ]);
 
         $user = new User();
 
@@ -34,5 +34,7 @@ class RegisterController extends Controller
 
         //User::create(Input::all());
         //User::create(request->all());
+
+        return redirect()->route('auth.login');
     }
 }

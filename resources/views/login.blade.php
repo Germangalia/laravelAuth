@@ -3,6 +3,24 @@
     <head>
         <title>Laravel</title>
 
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        @if (Session::has('login_error'))
+            <div class="alert alert-danger">
+                <ul>
+                    {{Session::get('login_error')}}
+                </ul>
+            </div>
+        @endif
+
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
         <style>
@@ -44,11 +62,11 @@
                     {!! csrf_field() !!}
                     <div class="form-group">
                         <label for="email">Email address:</label>
-                        <input type="email" class="form-control" id="email" name="email">
+                        <input type="email" placeholder="Nom Usuari" value="{{old('name')}}" class="form-control" id="email" name="email" required>
                     </div>
                     <div class="form-group">
                         <label for="password">Password:</label>
-                        <input type="password" class="form-control" id="email" name="password">
+                        <input type="password" class="form-control" id="email" name="password" required>
                     </div>
                     <div class="checkbox">
                         <label><input name="remember" type="checkbox"> Remember me</label>
