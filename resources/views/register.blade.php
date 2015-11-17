@@ -40,8 +40,11 @@
 </head>
 <body>
 <div class="container">
+
+    <div class="jumbotron">REGISTER</div>
+
     <div class="content">
-        <div class="title">REGISTER</div>
+
 
         @if (count($errors) > 0)
             <div class="alert alert-danger">
@@ -59,9 +62,11 @@
                 <label for="name">User name:</label>
                 <input type="text" placeholder="Nom Usuari" class="form-control" id="name" name="name"  value="{{old('name')}}" required>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="emailFormGroup">
                 <label for="email_confirm">Email address:</label>
-                <input type="text" placeholder="exemple@email.com" class="form-control" id="email" name="email" value="{{old('email')}}" required>
+                <input type="text" placeholder="exemple@email.com" class="form-control" id="email"
+                       name="email" value="{{old('email')}}" required v-on:onblur="checkEmailExist">
+                <div v-show="exists">Email ja existeix!</div>
             </div>
             <div class="form-group">
                 <label for="password">Password:</label>
@@ -73,7 +78,7 @@
             </div>
 
 
-            <button id="register" type="submit" class="btn btn-default">Registra't</button>
+            <button id="register" type="submit" class="btn btn-primary">Registra't</button>
             <button type="reset" class="btn btn-default">Reset</button>
         </form>
 
