@@ -29,14 +29,20 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
-        if ($this->login($request->email,$request->password)) {
-            //REDIRECT TO HOME
-            return redirect()->route('auth.home');
-        } else {
-            //REDIRECT BACK
-            $request->session()->flash('login_error','login incorrecte');
-            return redirect()->route('auth.login');
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            // Authentication passed...
+            return redirect()->intended('dashboard');
         }
+
+//        if ($this->login($request->email,$request->password)) {
+//            //REDIRECT TO HOME
+//            //Session::set("authenticated", true);
+//            return redirect()->route('auth.home');
+//        } else {
+//            //REDIRECT BACK
+//            $request->session()->flash('login_error','login incorrecte');
+//            return redirect()->route('auth.login');
+//        }
     }
 
     /**
