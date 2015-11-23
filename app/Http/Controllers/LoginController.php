@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 
+use Auth;
 use Hash;
 use Illuminate\Http\Request;
 
@@ -31,7 +32,7 @@ class LoginController extends Controller
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             // Authentication passed...
-            return redirect()->intended('dashboard');
+            return redirect()->intended('home');
         }
 
 //        if ($this->login($request->email,$request->password)) {
@@ -51,24 +52,24 @@ class LoginController extends Controller
      * @param $password
      * @return bool
      */
-    private function login($email, $password)
-    {
-        //TODO: Mirar bé a la base de dades
-
-        //$user = User::findOrFail(id);
-        //$user = User::all();
-        $user = User::where('email',$email)->first();
-
-        if ($user == null) {
-            return false;
-        }
-
-        if (Hash::check($password, $user->password)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+//    private function login($email, $password)
+//    {
+//        //TODO: Mirar bé a la base de dades
+//
+//        //$user = User::findOrFail(id);
+//        //$user = User::all();
+//        $user = User::where('email',$email)->first();
+//
+//        if ($user == null) {
+//            return false;
+//        }
+//
+//        if (Hash::check($password, $user->password)) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
 
     /**
      * get Login
