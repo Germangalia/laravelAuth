@@ -1,14 +1,17 @@
 var Vue = require('vue');
 
-new Vue({
-    el: '#emailFormGroup',
+var vm = new Vue({
+    el: '#email',
     data: {
-        exist: false
+        exist: false,
+        placeholder: "youremail@gmail.com"
     },
     methods: {
-        checkEmailExist: function (event) {
-            alert('Xivato');
-            this.exists=true;
+        sayhello: function() {
+          alert("hola!");
+        },
+        checkEmailExist: function (item) {
+            console.debug("hey");
         }
     }
 });

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <title>REGISTER</title>
 
@@ -62,10 +62,10 @@
                 <label for="name">User name:</label>
                 <input type="text" placeholder="Nom Usuari" class="form-control" id="name" name="name"  value="{{old('name')}}" required>
             </div>
-            <div class="form-group" id="emailFormGroup">
+            <div class="form-group">
                 <label for="email_confirm">Email address:</label>
-                <input type="text" placeholder="exemple@email.com" class="form-control" id="email"
-                       name="email" value="{{old('email')}}" required v-on:onblur="checkEmailExist">
+                <input type="text" placeholder="@{{ placeholder }}" class="form-control" id="email"
+                       name="email" value="{{old('email')}}" required v-on:click="sayhello">
                 <div v-show="exists">Email ja existeix!</div>
             </div>
             <div class="form-group">
@@ -87,7 +87,6 @@
     </div>
 </div>
 
-<script src="{{ asset('js/all.js') }}"></script>
 <script src="{{ asset('js/main.js') }}"></script>
 
 </body>
