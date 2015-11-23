@@ -65,7 +65,7 @@
             <div class="form-group">
                 <label for="email_confirm">Email address:</label>
                 <input type="text" placeholder="@{{ placeholder }}" class="form-control" id="email"
-                       name="email" value="{{old('email')}}" required v-on:click="sayhello">
+                       name="email" value="{{old('email')}}" required v-on:blur="checkEmailExist">
                 <div v-show="exists">Email ja existeix!</div>
             </div>
             <div class="form-group">
