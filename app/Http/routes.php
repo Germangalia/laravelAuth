@@ -14,27 +14,13 @@ Route::get('/', function () {
 
 Route::get('/home', ['as' => 'auth.home', function () { return view('home'); }]);
 
-Route::get('/resource', function () {
-//    $authenticated = false;
-//    if (Session::has('authenticated')) {
-//        if (Session::get('authenticated') == true ) {
-//            $authenticated = true;
-//        }
-//    }
-//
-//    if ($authenticated) {
-//        return view('resource');
-//    } else {
-//        return redirect()->route('auth.login');
-//    }
+Route::get('/resource', ['as' => 'resource', 'middleware' => 'auth', function () {
+    return view('resource');
+}]);
 
-    if (\Auth::check()) {
-        return view('resource');
-    } else {
-        return redirect()->route('auth.login');
-    }
+//Route::get('/patata', ['as' => 'patata', 'middleware' => 'auth', 'uses' => 'PatataController@getPatata']);
 
-});
+//Route::get('/exemple', ['as' => 'exemple', 'middleware' => 'auth', 'uses' => 'ExempleController@getExemple']);
 
 Route::get('/flushSession',
     ['as' => 'session.flush',
