@@ -1,26 +1,26 @@
 <?php
 
-Route::get('/login',
-    ['as' => 'auth.login',
-     'uses' => 'LoginController@getLogin'
-    ]);
-Route::post('/postLogin', [
-    'as' => 'auth.postLogin',
-    'uses' => 'LoginController@postLogin']);
-
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', ['as' => 'auth.home', function () { return view('home'); }]);
+Route::group(['middleware' =>'auth'], function() {
 
-Route::get('/resource', ['as' => 'resource', 'middleware' => 'auth', function () {
-    return view('resource');
-}]);
+    Route::get('/resource', ['as' => 'resource', 'middleware' => 'auth', function () {
+        return view('resource');
+    }]);
+
+    Route::get('/home', ['as' => 'auth.home', function () { return view('home'); }]);
+});
+
+
+
 
 //Route::get('/patata', ['as' => 'patata', 'middleware' => 'auth', 'uses' => 'PatataController@getPatata']);
 
 //Route::get('/exemple', ['as' => 'exemple', 'middleware' => 'auth', 'uses' => 'ExempleController@getExemple']);
+
+Route::get('/phpinfo', function () { return phpinfo(); });
 
 Route::get('/flushSession',
     ['as' => 'session.flush',
@@ -29,17 +29,19 @@ Route::get('/flushSession',
     }]
 );
 
-Route::get('/register',
-    ['as' => 'auth.register',
-        'uses' => 'RegisterController@getRegister']
-);
-
-Route::post('/register',
-    ['as' => 'auth.postRegister',
-        'uses' => 'RegisterController@postRegister']
-);
 
 Route::post('/checkEmailExists',
     ['as' => 'checkEmailExists',
         'uses' => 'ApiController@checkEmailExists']
 );
+
+
+
+// Authentication routes...
+Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+// Registration routes...
+Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::post('auth/register', 'Auth\AuthController@postRegister');
